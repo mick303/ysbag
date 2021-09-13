@@ -149,7 +149,7 @@ OK,https://okjx.cc/?url=
 云端,https://jx.ergan.top/?url=
 结束
 直播：
-【分类头】央视频道-卫视频道-少儿频道-数字频道-ihot频道-港台频道【分类尾】
+【分类头】央视频道-卫视频道-少儿频道-数字频道-ihot频道-其他频道【分类尾】
 【央视频道头】
 CCTV-1高清,http://223.110.243.138:80/PLTV/3/224/3221226316/index.m3u8?servicetype=1&amp;icpid=88888888&amp;from=1&amp;hms_devid=3444
 CCTV-1高清,http://39.135.138.60:18890/PLTV/88888910/224/3221225618/index.m3u8
@@ -255,11 +255,6 @@ Clarity4K,https://d3thiix3tzne5u.cloudfront.net/playlist.m3u8
 熊大过年,https://newcntv.qcloudcdn.com/asp/hls/1200/0303000a/3/default/7ae265653fe149069c3b53e31caaf060/1200.m3u8
 猪侠英雄,https://newcntv.qcloudcdn.com/asp/hls/1200/0303000a/3/default/0f03b08bc7b042358144617000fd2931/1200.m3u8
 甘肃少儿,http://39.134.39.39/PLTV/88888888/224/3221226289/index.m3u8
-央视少儿,http://39.134.115.163:8080/PLTV/88888910/224/3221225639/index.m3u8
-成都少儿,http://live.826pc.com/cdtv/live.php?id=6
-亲子启蒙,http://39.134.39.37/PLTV/88888888/224/3221226314/index.m3u8
-福建少儿,rtsp://183.252.166.199/PLTV/88888888/224/3221226120/10000100000000060000000002358082_0.smil
-北京少儿,http://ivi.bupt.edu.cn/hls/btv10.m3u8
 动漫秀场,http://39.134.39.39/PLTV/88888888/224/3221226197/index.m3u8
 浙江少儿,http://hw-m-l.cztv.com/channels/lantian/channel08/1080p.m3u8?k=1a7559a51eeb880b021619a07f463ac4&t=1577153787
 【少儿频道尾】
@@ -319,7 +314,7 @@ iHot爱赛车,http://117.148.179.50/hwltc.tv.cdn.zj.chinamobile.com/PLTV/8888888
 iHot爱都市,http://117.148.179.50/hwltc.tv.cdn.zj.chinamobile.com/PLTV/88888888/224/3221230104/index.m3u8
 iHot爱青春,http://117.148.179.50/hwltc.tv.cdn.zj.chinamobile.com/PLTV/88888888/224/3221230130/index.m3u8
 【ihot频道尾】
-【港台频道头】
+【其他频道头】
 凤凰中文,http://223.110.235.3/ott.js.chinamobile.com/PLTV/3/224/3221228057/index.m3u8
 凤凰中文,http://117.169.124.43:6610/ysten-businessmobile/live/fhchinese/index.m3u8
 凤凰资讯,http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221226923/index.m3u8
@@ -396,5 +391,5 @@ KBS Wolrd,http://50.7.161.82:8278/streams/d/KBS/playlist.m3u8
 Oh!k,http://50.7.161.82:8278/streams/d/Ohk/playlist.m3u8
 HGTV,http://50.7.161.82:8278/streams/d/HGTV/playlist.m3u8
 NatGeo Wild,http://50.7.161.82:8278/streams/d/Natgeowild/playlist.m3u8
-【港台频道尾】
+【其他频道尾】
 结束
