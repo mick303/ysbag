@@ -7,131 +7,116 @@
   "dns": {
     "servers": [
       {
-        "tag": "dns_proxy",
-        "address": "tls://1.1.1.1",
-        "address_resolver": "dns_resolver"
+        "tag": "proxy_dns",
+        "address": "tls://8.8.8.8/dns-query",
+        "detour": "select"
       },
       {
-        "tag": "dns_direct",
-        "address": "h3://dns.alidns.com/dns-query",
-        "address_resolver": "dns_resolver",
-        "detour": "DIRECT"
+        "tag": "local_dns",
+        "address": "h3://223.5.5.5/dns-query",
+        "detour": "direct"
       },
       {
-        "tag": "dns_fakeip",
+        "tag": "reject",
+        "address": "rcode://refused"
+      },
+      {
+        "tag": "fake_ip",
         "address": "fakeip"
-      },
-      {
-        "tag": "dns_resolver",
-        "address": "223.5.5.5",
-        "detour": "DIRECT"
-      },
-      {
-        "tag": "block",
-        "address": "rcode://success"
       }
     ],
     "rules": [
       {
-        "outbound": [
-          "any"
-        ],
-        "server": "dns_resolver"
-      },
-      {
-        "geosite": [
-          "category-ads-all"
-        ],
-        "server": "dns_block",
+        "outbound": "any",
+        "server": "local_dns",
         "disable_cache": true
       },
       {
-        "geosite": [
-          "geolocation-!cn"
-        ],
+        "clash_mode": "Global",
+        "server": "proxy_dns"
+      },
+      {
+        "clash_mode": "Direct",
+        "server": "local_dns"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "local_dns"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "server": "proxy_dns"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
         "query_type": [
           "A",
           "AAAA"
         ],
-        "server": "dns_fakeip"
-      },
-      {
-        "geosite": [
-          "geolocation-!cn"
-        ],
-        "server": "dns_proxy"
+        "server": "fake_ip"
       }
     ],
-    "final": "dns_direct",
+    "final": "proxy_dns",
     "independent_cache": true,
     "fakeip": {
       "enabled": true,
-      "inet4_range": "198.18.0.0/15"
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
     }
   },
   "ntp": {
+    "detour": "direct",
     "enabled": true,
     "server": "time.apple.com",
     "server_port": 123,
-    "interval": "30m",
-    "detour": "DIRECT"
+    "interval": "30m"
   },
   "inbounds": [
     {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "0.0.0.0",
-      "listen_port": 2080
-    },
-    {
+      "sniff": true,
+      "sniff_override_destination": true,
+      "domain_strategy": "prefer_ipv4",
       "type": "tun",
-      "tag": "tun-in",
-      "inet4_address": "172.19.0.1/30",
+      "inet4_address": "172.16.0.1/30",
+      "inet6_address": "2001:0470:f9da:fdfa::1/64",
+      "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
-      "stack": "mixed",
-      "sniff": true
+      "endpoint_independent_nat": true
     }
   ],
   "outbounds": [
     {
       "type": "selector",
-      "tag": "🚀 节点选择",
+      "tag": "select",
       "outbounds": [
-        "DIRECT",
-        "REJECT",
-        "⚡ 自动选择",
-        "优选104.17.251.255"
-      ]
+        "url-test",
+        "优选104.18.7.151",
+        "优选104.18.197.48",
+        "优选104.19.41.211"
+      ],
+      "default": "url-test"
     },
     {
       "type": "urltest",
-      "tag": "⚡ 自动选择",
+      "tag": "url-test",
       "outbounds": [
-        "优选104.17.251.255"
-      ]
-    },
-    {
-      "type": "direct",
-      "tag": "DIRECT"
-    },
-    {
-      "type": "block",
-      "tag": "REJECT"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
+        "优选104.18.7.151",
+        "优选104.18.197.48",
+        "优选104.19.41.211"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
     },
     {
       "type": "vless",
-      "tag": "优选104.17.251.255",
-      "server": "104.17.251.255",
+      "tag": "优选104.18.7.151",
+      "server": "104.18.7.151",
       "server_port": 80,
       "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "tcp_fast_open": false,
       "tls": {
-        "enabled": false
+        "enabled": true
       },
       "transport": {
         "type": "ws",
@@ -139,116 +124,134 @@
         "headers": {
           "host": "worker-long-notls.zdsub1.workers.dev"
         }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.197.48",
+      "server": "104.18.197.48",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true
       },
-      "network": "tcp"
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+        }
+      }
     },
     {
-      "type": "selector",
-      "tag": "GLOBAL",
-      "outbounds": [
-        "🚀 节点选择",
-        "DIRECT",
-        "REJECT",
-        "⚡ 自动选择",
-        "优选104.17.251.255"
-      ]
+      "type": "vless",
+      "tag": "优选104.19.41.211",
+      "server": "104.19.41.211",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "host": "worker-long-notls.zdsub1.workers.dev"
+        }
+      }
     },
     {
-      "type": "selector",
-      "tag": "🏠 私有网络",
-      "outbounds": [
-        "🚀 节点选择",
-        "DIRECT",
-        "REJECT",
-        "⚡ 自动选择",
-        "优选104.17.251.255"
-      ]
+      "type": "direct",
+      "tag": "direct"
     },
     {
-      "type": "selector",
-      "tag": "🔒 国内服务",
-      "outbounds": [
-        "🚀 节点选择",
-        "DIRECT",
-        "REJECT",
-        "⚡ 自动选择",
-        "优选104.17.251.255"
-      ]
+      "type": "block",
+      "tag": "reject"
     },
     {
-      "type": "selector",
-      "tag": "🐟 漏网之鱼",
-      "outbounds": [
-        "🚀 节点选择",
-        "DIRECT",
-        "REJECT",
-        "⚡ 自动选择",
-        "优选104.17.251.255"
-      ]
+      "type": "dns",
+      "tag": "dns_out"
     }
   ],
   "route": {
-    "rule_set": [
-      {
-        "tag": "geolocation-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://github.com/lyc8503/sing-box-rules/raw/rule-set-geosite/geosite-geolocation-cn.srs",
-        "download_detour": "⚡ 自动选择"
-      },
-      {
-        "tag": "private-ip",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://github.com/lyc8503/sing-box-rules/raw/rule-set-geoip/geoip-private.srs",
-        "download_detour": "⚡ 自动选择"
-      },
-      {
-        "tag": "cn-ip",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://github.com/lyc8503/sing-box-rules/raw/rule-set-geoip/geoip-cn.srs",
-        "download_detour": "⚡ 自动选择"
-      }
-    ],
     "rules": [
       {
+        "clash_mode": "Global",
+        "outbound": "select"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
         "protocol": "dns",
-        "outbound": "dns-out"
+        "outbound": "dns_out"
       },
       {
-        "clash_mode": "direct",
-        "outbound": "DIRECT"
+        "rule_set": "geosite-category-ads-all",
+        "outbound": "reject"
       },
       {
-        "clash_mode": "global",
-        "outbound": "GLOBAL"
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
       },
       {
-        "rule_set": [
-          "private-ip"
-        ],
-        "outbound": "🏠 私有网络"
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geolocation-cn",
-          "cn-ip"
-        ],
-        "outbound": "🔒 国内服务"
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "select"
       }
     ],
-    "auto_detect_interface": true,
-    "final": "🐟 漏网之鱼"
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "select",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "download_detour": "select",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-geolocation-!cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "select",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-ads-all",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "select",
+        "update_interval": "1d"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true
   },
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true
+      "path": "cache.db"
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "dashboard"
+      "external_controller": "127.0.0.1:9090"
     }
   }
 }
