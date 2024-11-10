@@ -1,0 +1,162 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "223.5.5.5",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
+          "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
+          "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com",
+          "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
+          "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
+          "jp7.c259a22e-f036-2541-0753-80f236df600c.722ab11a.the-best-airport.com",
+          "us2.c259a22e-f036-2541-0753-80f236df600c.2f6cd430.the-best-airport.com",
+          "us4.c259a22e-f036-2541-0753-80f236df600c.30d6a0d0.the-best-airport.com",
+          "jp6.c259a22e-f036-2541-0753-80f236df600c.3958a655.the-best-airport.com",
+          "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com",
+          "hk1.c259a22e-f036-2541-0753-80f236df600c.6df03129.the-best-airport.com",
+          "hk2.c259a22e-f036-2541-0753-80f236df600c.24ba0f77.the-best-airport.com",
+          "hk3.c259a22e-f036-2541-0753-80f236df600c.0d1f6a51.the-best-airport.com",
+          "hk4.c259a22e-f036-2541-0753-80f236df600c.66dc3db5.the-best-airport.com",
+          "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
+          "jp5.c259a22e-f036-2541-0753-80f236df600c.cfe6fe33.the-best-airport.com",
+          "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
+          "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
+          "jp8.c259a22e-f036-2541-0753-80f236df600c.7e2a9604.the-best-airport.com",
+          "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
+          "sg2.c259a22e-f036-2541-0753-80f236df600c.2c4b5066.the-best-airport.com",
+          "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+          "us1.c259a22e-f036-2541-0753-80f236df600c.36a8c922.the-best-airport.com",
+          "us3.c259a22e-f036-2541-0753-80f236df600c.47253001.the-best-airport.com"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "domain_suffix": ".cn",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.147.22",
+        "104.17.148.22",
+        "104.21.83.62",
+        "172.67.214.246",
+        "2606:4700:3030::6815:533e",
+        "2606:4700:3030::ac43:d6f6"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "（看这里）每月刷新订阅获取新节点",
+        "一元机场.ink",
+        "🇭🇰香港 01 | 专线",
+        "🇭🇰香港 02 | 专线",
+        "🇭🇰香港 03 | 专线",
+        "🇭🇰香港 04 | 专线",
+        "🇯🇵日本 01 | 专线",
+        "🇯🇵日本 02 | 专线",
+        "🇯🇵日本 03 | 专线",
+        "🇯🇵日本 04 | 专线",
+        "🇯🇵日本 05 | 25倍计费！",
+        "🇯🇵日本 06 | 25倍计费！",
+        "🇯🇵日本 07 | 25倍计费！",
+        "🇯🇵日本 08 | 25倍计费！",
+        "🇸🇬新加坡 01 | 专线",
+        "🇸🇬新加坡 02 | 专线",
+        "🇸🇬新加坡 03 | 专线",
+        "🇸🇬新加坡 04 | 专线",
+        "🇸🇬新加坡 05 | 专线",
+        "🇸🇬新加坡 06 | 专线",
+        "🇸🇬新加坡 07 | 专线",
+        "🇸🇬新加坡 08 | 专线",
+        "🇺🇸美国 01 | 专线",
+        "🇺🇸美国 02 | 专线",
+        "🇺🇸美国 03 | 专线",
+        "🇺🇸美国 04 | 专线"
+      ],
+      "default": "auto",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "（看这里）每月刷新订阅获取新
