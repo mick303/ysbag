@@ -1020,23 +1020,7 @@
                 "max_early_data": 2560
             }
         },
-        {
-            "tag": "自选172.67.170.68",
-            "type": "vless",
-            "server": "172.67.170.68",
-            "server_port": 80,
-            "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-            "packet_encoding": "xudp",
-            "transport": {
-                "type": "ws",
-                "path": "/",
-                "headers": {
-                    "Host": "worker-long-notls.zdsub1.workers.dev"
-                },
-                "early_data_header_name": "Sec-WebSocket-Protocol",
-                "max_early_data": 2560
-            }
-        },
+ 
         {
             "tag": "自选172.67.223.95",
             "type": "vless",
