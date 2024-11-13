@@ -1140,18 +1140,7 @@
                 }
             }
         },
-        {
-            "tag": "🇯🇵 日本 08 | 25倍计费！",
-            "type": "trojan",
-            "server": "jp8.c259a22e-f036-2541-0753-80f236df600c.7e2a9604.the-best-airport.com",
-            "server_port": 443,
-            "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
-            "tls": {
-                "enabled": true,
-                "insecure": false,
-                "server_name": "new.download.the-best-airport.com"
-            }
-        },
+  
         {
             "tag": "🇺🇸 US",
             "type": "vless",
