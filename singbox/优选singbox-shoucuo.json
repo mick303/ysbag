@@ -1102,7 +1102,7 @@
             }
         },
         {
-            "tag": "🇷🇺 RU",
+            "tag": "RU",
             "type": "vless",
             "server": "45.67.215.119",
             "server_port": 443,
@@ -1122,7 +1122,7 @@
             }
         },
         {
-            "tag": "🇰🇿 KZ",
+            "tag": "KZ",
             "type": "vless",
             "server": "194.76.18.121",
             "server_port": 443,
@@ -1143,7 +1143,7 @@
         },
   
         {
-            "tag": "🇺🇸 US",
+            "tag": "US",
             "type": "vless",
             "server": "216.24.57.68",
             "server_port": 443,
