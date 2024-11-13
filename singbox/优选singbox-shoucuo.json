@@ -1058,7 +1058,7 @@
             }
         },
         {
-            "tag": "🇸🇬 新加坡 08 | 专线",
+            "tag": "🇸🇬新加坡 08 | 专线",
             "type": "trojan",
             "server": "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
             "server_port": 443,
@@ -1070,7 +1070,7 @@
             }
         },
         {
-            "tag": "🇸🇬 新加坡 03 | 专线",
+            "tag": "🇸🇬新加坡 03 | 专线",
             "type": "trojan",
             "server": "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com",
             "server_port": 443,
@@ -1226,7 +1226,7 @@
             }
         },
         {
-            "tag": "🇸🇬 新加坡 07 | 专线",
+            "tag": "🇸🇬新加坡 07 | 专线",
             "type": "trojan",
             "server": "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
             "server_port": 443,
