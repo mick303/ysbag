@@ -1,0 +1,1552 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "223.5.5.5",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
+          "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+          "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
+          "jp7.c259a22e-f036-2541-0753-80f236df600c.722ab11a.the-best-airport.com",
+          "sg-detour-03.grabgo.pro",
+          "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com",
+          "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
+          "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
+          "cfip.xxxxxxxx.tk",
+          "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
+          "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
+          "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
+          "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
+          "jp5.c259a22e-f036-2541-0753-80f236df600c.cfe6fe33.the-best-airport.com",
+          "jp6.c259a22e-f036-2541-0753-80f236df600c.3958a655.the-best-airport.com",
+          "jp8.c259a22e-f036-2541-0753-80f236df600c.7e2a9604.the-best-airport.com",
+          "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "domain_suffix": ".cn",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.148.22",
+        "104.17.147.22",
+        "172.67.214.246",
+        "104.21.83.62",
+        "2606:4700:3030::6815:533e",
+        "2606:4700:3030::ac43:d6f6"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "🇯🇵日本 01 | 专线 § 0",
+        "🇯🇵日本 02 | 专线 § 1",
+        "🇯🇵日本 03 | 专线 § 2",
+        "🇯🇵日本 04 | 专线 § 3",
+        "🇯🇵日本 05 | 25倍计费！ § 4",
+        "🇯🇵日本 06 | 25倍计费！ § 5",
+        "🇯🇵日本 07 | 25倍计费！ § 6",
+        "🇯🇵日本 08 | 25倍计费！ § 7",
+        "🇸🇬新加坡 01 | 专线 § 8",
+        "🇸🇬新加坡 03 | 专线 § 9",
+        "🇸🇬新加坡 04 | 专线 § 10",
+        "🇸🇬新加坡 05 | 专线 § 11",
+        "🇸🇬新加坡 06 | 专线 § 12",
+        "🇸🇬新加坡 07 | 专线 § 13",
+        "🇸🇬新加坡 08 | 专线 § 14",
+        "001.wangdang2130.workers.dev § 15",
+        "KR § 16",
+        "RU § 17",
+        "SG § 18",
+        "KR 已启用临时域名中转服务，请尽快绑定自定义域！ § 19",
+        "US § 20",
+        "KZ § 21",
+        "KZ § 22",
+        "AT § 23",
+        "US § 24",
+        "GB § 25",
+        "GB § 26",
+        "HK § 27",
+        "HK § 28",
+        "自选ip4.255.56.137 § 29",
+        "自选ip20.33.30.36 § 30",
+        "自选ip20.91.225.232 § 31",
+        "自选ip20.240.254.247 § 32",
+        "自选ip34.66.72.229 § 33",
+        "自选ip34.72.146.82 北美 § 34",
+        "自选ip34.123.83.237 北美 § 35",
+        "自选ip99.83.209.185 § 36",
+        "LAX 已启用临时域名中转服务，请尽快绑定自定义域！ § 37",
+        "优选104.16.103.109 § 38",
+        "优选104.16.103.109-19000 § 39",
+        "优选104.17.56.206 § 40",
+        "优选104.18.108.98 § 41",
+        "优选104.18.131.112 § 42",
+        "优选104.18.135.154 § 43",
+        "优选104.18.197.48 § 44",
+        "优选104.18.206.225 § 45",
+        "优选104.19.85.117 § 46",
+        "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 47",
+        "优选104.21.36.156 § 48",
+        "自选141.101.114.219 § 49",
+        "自选141.101.120.129 § 50",
+        "自选162.159.252.211 § 51",
+        "自选172.67.1.105 § 52",
+        "自选172.67.136.175 § 53",
+        "自选172.67.170.68 § 54",
+        "自选172.67.211.254 § 55",
+        "自选172.67.223.95 § 56",
+        "自选172.67.247.85 § 57",
+        "自选172.67.249.74 § 58",
+        "优选198.41.219.24 § 59",
+        "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 60",
+        "sg § 61"
+      ],
+      "default": "auto",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "🇯🇵日本 01 | 专线 § 0",
+        "🇯🇵日本 02 | 专线 § 1",
+        "🇯🇵日本 03 | 专线 § 2",
+        "🇯🇵日本 04 | 专线 § 3",
+        "🇯🇵日本 05 | 25倍计费！ § 4",
+        "🇯🇵日本 06 | 25倍计费！ § 5",
+        "🇯🇵日本 07 | 25倍计费！ § 6",
+        "🇯🇵日本 08 | 25倍计费！ § 7",
+        "🇸🇬新加坡 01 | 专线 § 8",
+        "🇸🇬新加坡 03 | 专线 § 9",
+        "🇸🇬新加坡 04 | 专线 § 10",
+        "🇸🇬新加坡 05 | 专线 § 11",
+        "🇸🇬新加坡 06 | 专线 § 12",
+        "🇸🇬新加坡 07 | 专线 § 13",
+        "🇸🇬新加坡 08 | 专线 § 14",
+        "001.wangdang2130.workers.dev § 15",
+        "KR § 16",
+        "RU § 17",
+        "SG § 18",
+        "KR 已启用临时域名中转服务，请尽快绑定自定义域！ § 19",
+        "US § 20",
+        "KZ § 21",
+        "KZ § 22",
+        "AT § 23",
+        "US § 24",
+        "GB § 25",
+        "GB § 26",
+        "HK § 27",
+        "HK § 28",
+        "自选ip4.255.56.137 § 29",
+        "自选ip20.33.30.36 § 30",
+        "自选ip20.91.225.232 § 31",
+        "自选ip20.240.254.247 § 32",
+        "自选ip34.66.72.229 § 33",
+        "自选ip34.72.146.82 北美 § 34",
+        "自选ip34.123.83.237 北美 § 35",
+        "自选ip99.83.209.185 § 36",
+        "LAX 已启用临时域名中转服务，请尽快绑定自定义域！ § 37",
+        "优选104.16.103.109 § 38",
+        "优选104.16.103.109-19000 § 39",
+        "优选104.17.56.206 § 40",
+        "优选104.18.108.98 § 41",
+        "优选104.18.131.112 § 42",
+        "优选104.18.135.154 § 43",
+        "优选104.18.197.48 § 44",
+        "优选104.18.206.225 § 45",
+        "优选104.19.85.117 § 46",
+        "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 47",
+        "优选104.21.36.156 § 48",
+        "自选141.101.114.219 § 49",
+        "自选141.101.120.129 § 50",
+        "自选162.159.252.211 § 51",
+        "自选172.67.1.105 § 52",
+        "自选172.67.136.175 § 53",
+        "自选172.67.170.68 § 54",
+        "自选172.67.211.254 § 55",
+        "自选172.67.223.95 § 56",
+        "自选172.67.247.85 § 57",
+        "自选172.67.249.74 § 58",
+        "优选198.41.219.24 § 59",
+        "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 60",
+        "sg § 61"
+      ],
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 01 | 专线 § 0",
+      "server": "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 02 | 专线 § 1",
+      "server": "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 03 | 专线 § 2",
+      "server": "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 04 | 专线 § 3",
+      "server": "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 05 | 25倍计费！ § 4",
+      "server": "jp5.c259a22e-f036-2541-0753-80f236df600c.cfe6fe33.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 06 | 25倍计费！ § 5",
+      "server": "jp6.c259a22e-f036-2541-0753-80f236df600c.3958a655.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 07 | 25倍计费！ § 6",
+      "server": "jp7.c259a22e-f036-2541-0753-80f236df600c.722ab11a.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 08 | 25倍计费！ § 7",
+      "server": "jp8.c259a22e-f036-2541-0753-80f236df600c.7e2a9604.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 01 | 专线 § 8",
+      "server": "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 03 | 专线 § 9",
+      "server": "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 04 | 专线 § 10",
+      "server": "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 05 | 专线 § 11",
+      "server": "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 06 | 专线 § 12",
+      "server": "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 07 | 专线 § 13",
+      "server": "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 08 | 专线 § 14",
+      "server": "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "001.wangdang2130.workers.dev § 15",
+      "server": "162.159.137.187",
+      "server_port": 8080,
+      "uuid": "4add2a0a-68ce-4214-b04c-347470d3f1fc",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "001.wangdang2130.workers.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR § 16",
+      "server": "14.39.254.65",
+      "server_port": 50000,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=14.39.254.65%3A50000",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "RU § 17",
+      "server": "45.67.215.119",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=45.67.215.119%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "SG § 18",
+      "server": "47.88.221.55",
+      "server_port": 6445,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=47.88.221.55%3A6445",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR 已启用临时域名中转服务，请尽快绑定自定义域！ § 19",
+      "server": "119.205.51.190",
+      "server_port": 50000,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "547c921f-c9b1-4d57-bb25-ff5c79749783.a09c5a67-316e-45c6-a051-e6066737fd47.theworkpc.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/fhjd002.pages.dev/?proxyip=119.205.51.190%3A50000",
+        "headers": {
+          "Host": "547c921f-c9b1-4d57-bb25-ff5c79749783.a09c5a67-316e-45c6-a051-e6066737fd47.theworkpc.com"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "US § 20",
+      "server": "148.135.22.235",
+      "server_port": 20150,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=148.135.22.235%3A20150",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KZ § 21",
+      "server": "194.76.18.116",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=194.76.18.116%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KZ § 22",
+      "server": "194.76.18.121",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=194.76.18.121%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "AT § 23",
+      "server": "212.183.88.242",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=212.183.88.242%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "US § 24",
+      "server": "216.24.57.68",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=216.24.57.68%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "GB § 25",
+      "server": "217.163.76.65",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=217.163.76.65%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "GB § 26",
+      "server": "217.163.76.114",
+      "server_port": 443,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=217.163.76.114%3A443",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "HK § 27",
+      "server": "223.18.129.85",
+      "server_port": 11263,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=223.18.129.85%3A11263",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "HK § 28",
+      "server": "223.18.129.85",
+      "server_port": 34913,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "page.ziyong0001.dynv6.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=223.18.129.85%3A34913",
+        "headers": {
+          "Host": "page.ziyong0001.dynv6.net"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip4.255.56.137 § 29",
+      "server": "4.255.56.137",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.33.30.36 § 30",
+      "server": "20.33.30.36",
+      "server_port": 2083,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.91.225.232 § 31",
+      "server": "20.91.225.232",
+      "server_port": 2053,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.240.254.247 § 32",
+      "server": "20.240.254.247",
+      "server_port": 2053,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip34.66.72.229 § 33",
+      "server": "34.66.72.229",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip34.72.146.82 北美 § 34",
+      "server": "34.72.146.82",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip34.123.83.237 北美 § 35",
+      "server": "34.123.83.237",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip99.83.209.185 § 36",
+      "server": "99.83.209.185",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-notls.xxoo-dd8.workers.dev/",
+        "headers": {
+          "Host": "68123106-3e43-4958-b75a-b06e81eabf79.50d88e28-a870-497d-bf87-c20fb6802871.camdvr.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "LAX 已启用临时域名中转服务，请尽快绑定自定义域！ § 37",
+      "server": "103.99.178.62",
+      "server_port": 13241,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-long-notls.zdsub1.workers.dev/",
+        "headers": {
+          "Host": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.16.103.109 § 38",
+      "server": "104.16.103.109",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-proud-union-notls.ggmm.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.16.103.109-19000 § 39",
+      "server": "104.16.103.109",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-proud-union-notls.ggmm.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.17.56.206 § 40",
+      "server": "104.17.56.206",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.108.98 § 41",
+      "server": "104.18.108.98",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.131.112 § 42",
+      "server": "104.18.131.112",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.135.154 § 43",
+      "server": "104.18.135.154",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.197.48 § 44",
+      "server": "104.18.197.48",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.206.225 § 45",
+      "server": "104.18.206.225",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.19.85.117 § 46",
+      "server": "104.19.85.117",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 47",
+      "server": "104.19.95.220",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "5ae52850-e7f0-481c-8cff-6c1ed17fd9f1.91f1a2e9-9f15-4330-996f-0b6bc7c8fa5b.theworkpc.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-long-notls.zdsub1.workers.dev/",
+        "headers": {
+          "Host": "5ae52850-e7f0-481c-8cff-6c1ed17fd9f1.91f1a2e9-9f15-4330-996f-0b6bc7c8fa5b.theworkpc.com"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 48",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选141.101.114.219 § 49",
+      "server": "141.101.114.219",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选141.101.120.129 § 50",
+      "server": "141.101.120.129",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选162.159.252.211 § 51",
+      "server": "162.159.252.211",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.1.105 § 52",
+      "server": "172.67.1.105",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.136.175 § 53",
+      "server": "172.67.136.175",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.170.68 § 54",
+      "server": "172.67.170.68",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.211.254 § 55",
+      "server": "172.67.211.254",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.223.95 § 56",
+      "server": "172.67.223.95",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.247.85 § 57",
+      "server": "172.67.247.85",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.249.74 § 58",
+      "server": "172.67.249.74",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选198.41.219.24 § 59",
+      "server": "198.41.219.24",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "worker-long-notls.zdsub1.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 60",
+      "server": "cfip.xxxxxxxx.tk",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "c543a30d-e872-49ad-8be6-2836890f3d20.b9caf607-1ef7-4fd2-be07-224869a92bdf.accesscam.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/worker-long-notls.zdsub1.workers.dev/",
+        "headers": {
+          "Host": "c543a30d-e872-49ad-8be6-2836890f3d20.b9caf607-1ef7-4fd2-be07-224869a92bdf.accesscam.org"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vmess",
+      "tag": "sg § 61",
+      "server": "sg-detour-03.grabgo.pro",
+      "server_port": 15303,
+      "uuid": "0b9232cd-d901-4f16-9b51-05bfa3b59bd7",
+      "security": "chacha20-poly1305",
+      "authenticated_length": true,
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "package_name": "app.hiddify.com",
+        "outbound": "bypass"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "domain_suffix": ".cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-cn.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-cn.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "viyPdhvfoboRVU5l"
+    }
+  }
+}
