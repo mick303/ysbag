@@ -1,0 +1,2423 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "223.5.5.5",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "sg-detour-03.grabgo.pro",
+          "cfip.xxxxxxxx.tk"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "domain_suffix": ".cn",
+        "server": "dns-direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.148.22",
+        "104.17.147.22",
+        "104.21.83.62",
+        "172.67.214.246",
+        "2606:4700:3030::ac43:d6f6",
+        "2606:4700:3030::6815:533e"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "自选172.67.223.95 § 0",
+        "自选172.67.1.105 § 1",
+        "自选172.67.170.68 § 2",
+        "优选104.16.103.109 § 3",
+        "自选172.67.136.175 § 9",
+        "优选104.18.131.112 § 10",
+        "优选104.18.108.98 § 12",
+        "优选104.18.131.112 § 13",
+        "自选ip34.66.72.229 § 16",
+        "优选104.18.197.48 § 17",
+        "优选104.16.103.109-19000 § 18",
+        "自选ip4.255.56.137 § 19",
+        "自选ip20.33.30.36 § 20",
+        "自选ip34.72.146.82 北美 § 22",
+        "自选ip34.123.83.237 北美 § 23",
+        "自选ip20.240.254.247 § 24",
+        "自选ip20.91.225.232 § 25",
+        "SG § 26",
+        "优选104.21.36.156 § 27",
+        "优选104.17.56.206 § 28",
+        "优选104.18.131.112 § 29",
+        "优选104.21.36.156 § 30",
+        "优选104.21.36.156 § 31",
+        "自选172.67.223.95 § 32",
+        "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 34",
+        "001.wangdang2130.workers.dev § 35",
+        "自选141.101.114.219 § 36",
+        "优选104.21.36.156 § 37",
+        "优选104.21.36.156 § 38",
+        "优选104.18.197.48 § 39",
+        "自选141.101.120.129 § 40",
+        "优选198.41.219.24 § 41",
+        "优选104.21.36.156 § 42",
+        "优选104.21.36.156 § 43",
+        "优选104.19.85.117 § 45",
+        "优选104.18.206.225 § 46",
+        "自选172.67.247.85 § 47",
+        "优选104.18.135.154 § 49",
+        "自选162.159.252.211 § 50",
+        "自选172.67.211.254 § 51",
+        "自选172.67.223.95 § 52",
+        "自选ip99.83.209.185 § 53",
+        "自选172.67.249.74 § 54",
+        "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 55",
+		"AE § 56",
+        "KR § 57",
+        "KR § 58",
+        "KR § 59",
+        "US § 60",
+        "BR § 61",
+        "AT § 62",
+        "CMCC § 63",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点 § 64",
+        "AE § 65",
+        "SE § 66",
+        "US § 67",
+        "US § 68",
+        "AU § 69",
+        "CMCC § 70",
+        "KR § 71",
+        "qa.visamiddleeast.com § 72",
+        "优选10月 § 73",
+        "www.visaeurope.at § 74",
+        "IPv4 § 75",
+        "www.visa.com.sg § 76",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点 § 77",
+        "icook.hk § 78",
+        "www.wto.org § 79",
+        "visa.cn § 80",
+        "cf-saas.asia § 81",
+        "Cloudflare.241234.xyz § 82",
+        "africa.visa.com § 83",
+        "www.visa.com § 84",
+        "cis.visa.com § 85",
+        "www.visa.com.mt § 86",
+        "time.is § 87",
+        "66 § 88",
+        "1 § 89",
+        "333 § 90",
+        "csgo.com § 91",
+        "444 § 92",
+        "4 § 93",
+        "美国 § 94",
+        "香港 § 95",
+        "天书3-clone § 96",
+        "天书8 § 97",
+        "香港2 § 98",
+        "天书6 § 99",
+        "1-clone-clone-clone-clone § 100",
+        "55 § 101",
+        "1 § 102",
+        "_2087 § 103",
+        "666 § 104",
+        "www.csgo.com § 105",
+        "6-clone-clone-clone § 106",
+        "天书8-clone § 107"
+      ],
+      "default": "auto",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "自选172.67.223.95 § 0",
+        "自选172.67.1.105 § 1",
+        "自选172.67.170.68 § 2",
+        "优选104.16.103.109 § 3",
+        "自选172.67.136.175 § 9",
+        "优选104.18.131.112 § 10",
+        "优选104.18.108.98 § 12",
+        "优选104.18.131.112 § 13",
+        "自选ip34.66.72.229 § 16",
+        "优选104.18.197.48 § 17",
+        "优选104.16.103.109-19000 § 18",
+        "自选ip4.255.56.137 § 19",
+        "自选ip20.33.30.36 § 20",
+        "自选ip34.72.146.82 北美 § 22",
+        "自选ip34.123.83.237 北美 § 23",
+        "自选ip20.240.254.247 § 24",
+        "自选ip20.91.225.232 § 25",
+        "SG § 26",
+        "优选104.21.36.156 § 27",
+        "优选104.17.56.206 § 28",
+        "优选104.18.131.112 § 29",
+        "优选104.21.36.156 § 30",
+        "优选104.21.36.156 § 31",
+        "自选172.67.223.95 § 32",
+        "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 34",
+        "001.wangdang2130.workers.dev § 35",
+        "自选141.101.114.219 § 36",
+        "优选104.21.36.156 § 37",
+        "优选104.21.36.156 § 38",
+        "优选104.18.197.48 § 39",
+        "自选141.101.120.129 § 40",
+        "优选198.41.219.24 § 41",
+        "优选104.21.36.156 § 42",
+        "优选104.21.36.156 § 43",
+        "优选104.19.85.117 § 45",
+        "优选104.18.206.225 § 46",
+        "自选172.67.247.85 § 47",
+        "优选104.18.135.154 § 49",
+        "自选162.159.252.211 § 50",
+        "自选172.67.211.254 § 51",
+        "自选172.67.223.95 § 52",
+        "自选ip99.83.209.185 § 53",
+        "自选172.67.249.74 § 54",
+        "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 55",
+		"AE § 56",
+        "KR § 57",
+        "KR § 58",
+        "KR § 59",
+        "US § 60",
+        "BR § 61",
+        "AT § 62",
+        "CMCC § 63",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点 § 64",
+        "AE § 65",
+        "SE § 66",
+        "US § 67",
+        "US § 68",
+        "AU § 69",
+        "CMCC § 70",
+        "KR § 71",
+        "qa.visamiddleeast.com § 72",
+        "优选10月 § 73",
+        "www.visaeurope.at § 74",
+        "IPv4 § 75",
+        "www.visa.com.sg § 76",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点 § 77",
+        "icook.hk § 78",
+        "www.wto.org § 79",
+        "visa.cn § 80",
+        "cf-saas.asia § 81",
+        "Cloudflare.241234.xyz § 82",
+        "africa.visa.com § 83",
+        "www.visa.com § 84",
+        "cis.visa.com § 85",
+        "www.visa.com.mt § 86",
+        "time.is § 87",
+        "66 § 88",
+        "1 § 89",
+        "333 § 90",
+        "csgo.com § 91",
+        "444 § 92",
+        "4 § 93",
+        "美国 § 94",
+        "香港 § 95",
+        "天书3-clone § 96",
+        "天书8 § 97",
+        "香港2 § 98",
+        "天书6 § 99",
+        "1-clone-clone-clone-clone § 100",
+        "55 § 101",
+        "1 § 102",
+        "_2087 § 103",
+        "666 § 104",
+        "www.csgo.com § 105",
+        "6-clone-clone-clone § 106",
+        "天书8-clone § 107"
+      ],
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.223.95 § 0",
+      "server": "172.67.223.95",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.1.105 § 1",
+      "server": "172.67.1.105",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.170.68 § 2",
+      "server": "172.67.170.68",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.16.103.109 § 3",
+      "server": "104.16.103.109",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    
+   
+  
+    {
+      "type": "vless",
+      "tag": "自选172.67.136.175 § 9",
+      "server": "172.67.136.175",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.131.112 § 10",
+      "server": "104.18.131.112",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+ 
+    {
+      "type": "vless",
+      "tag": "优选104.18.108.98 § 12",
+      "server": "104.18.108.98",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.131.112 § 13",
+      "server": "104.18.131.112",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+ 
+    {
+      "type": "vless",
+      "tag": "自选ip34.66.72.229 § 16",
+      "server": "34.66.72.229",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.197.48 § 17",
+      "server": "104.18.197.48",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.16.103.109-19000 § 18",
+      "server": "104.16.103.109",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip4.255.56.137 § 19",
+      "server": "4.255.56.137",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.33.30.36 § 20",
+      "server": "20.33.30.36",
+      "server_port": 2083,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+ 
+    {
+      "type": "vless",
+      "tag": "自选ip34.72.146.82 北美 § 22",
+      "server": "34.72.146.82",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip34.123.83.237 北美 § 23",
+      "server": "34.123.83.237",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.240.254.247 § 24",
+      "server": "20.240.254.247",
+      "server_port": 2053,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip20.91.225.232 § 25",
+      "server": "20.91.225.232",
+      "server_port": 2053,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "SG § 26",
+      "server": "47.88.221.55",
+      "server_port": 6445,
+      "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=47.88.221.55%3A6445",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 27",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.17.56.206 § 28",
+      "server": "104.17.56.206",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.131.112 § 29",
+      "server": "104.18.131.112",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 30",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 31",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.223.95 § 32",
+      "server": "172.67.223.95",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+  
+    {
+      "type": "vless",
+      "tag": "官方优选域名-OTC大佬提供维护 已启用临时域名中转服务，请尽快绑定自定义域！ § 34",
+      "server": "cfip.xxxxxxxx.tk",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.kevqwkt451.workers.dev/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "001.wangdang2130.workers.dev § 35",
+      "server": "162.159.137.187",
+      "server_port": 8080,
+      "uuid": "4add2a0a-68ce-4214-b04c-347470d3f1fc",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "001.wangdang2130.workers.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选141.101.114.219 § 36",
+      "server": "141.101.114.219",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 37",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 38",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.197.48 § 39",
+      "server": "104.18.197.48",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选141.101.120.129 § 40",
+      "server": "141.101.120.129",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选198.41.219.24 § 41",
+      "server": "198.41.219.24",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 42",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.21.36.156 § 43",
+      "server": "104.21.36.156",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    
+    {
+      "type": "vless",
+      "tag": "优选104.19.85.117 § 45",
+      "server": "104.19.85.117",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.206.225 § 46",
+      "server": "104.18.206.225",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.247.85 § 47",
+      "server": "172.67.247.85",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+  
+    {
+      "type": "vless",
+      "tag": "优选104.18.135.154 § 49",
+      "server": "104.18.135.154",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选162.159.252.211 § 50",
+      "server": "162.159.252.211",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.211.254 § 51",
+      "server": "172.67.211.254",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.223.95 § 52",
+      "server": "172.67.223.95",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选ip99.83.209.185 § 53",
+      "server": "99.83.209.185",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.249.74 § 54",
+      "server": "172.67.249.74",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+ 
+    {
+      "type": "vless",
+      "tag": "CF-27.48MB/s 已启用临时域名中转服务，请尽快绑定自定义域！ § 55",
+      "server": "104.19.95.220",
+      "server_port": 443,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tianshu.19860524.us.kg/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+	{
+      "type": "vless",
+      "tag": "AE § 56",
+      "server": "193.123.81.105",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=193.123.81.105%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR § 57",
+      "server": "220.90.247.28",
+      "server_port": 50000,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=220.90.247.28%3A50000",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR § 58",
+      "server": "221.153.42.212",
+      "server_port": 39236,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=221.153.42.212%3A39236",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR § 59",
+      "server": "175.210.217.204",
+      "server_port": 30012,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=175.210.217.204%3A30012",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "US § 60",
+      "server": "63.141.128.100",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=63.141.128.100%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "BR § 61",
+      "server": "185.133.35.30",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=185.133.35.30%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "AT § 62",
+      "server": "212.183.88.193",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=212.183.88.193%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CMCC § 63",
+      "server": "172.64.152.251",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=proxyip.oracle.fxxk.dedyn.io",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "加入我的频道t.me/CMLiussss解锁更多优选节点 § 64",
+      "server": "join.my.telegram.channel.cmliussss.to.unlock.more.premium.nodes.cf.090227.xyz",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=proxyip.us.fxxk.dedyn.io",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "AE § 65",
+      "server": "193.123.80.245",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=193.123.80.245%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "SE § 66",
+      "server": "129.151.198.3",
+      "server_port": 8443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=proxyip.oracle.fxxk.dedyn.io",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "US § 67",
+      "server": "204.110.220.6",
+      "server_port": 80,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=204.110.220.6%3A80",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "US § 68",
+      "server": "47.254.17.234",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=47.254.17.234%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "AU § 69",
+      "server": "152.67.96.55",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=152.67.96.55%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CMCC § 70",
+      "server": "104.17.213.78",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=proxyip.oracle.fxxk.dedyn.io",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "KR § 71",
+      "server": "149.129.8.215",
+      "server_port": 443,
+      "uuid": "10a7e5e6-ed9d-44b8-966b-191096ddf820",
+      "tls": {
+        "enabled": true,
+        "server_name": "worker.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?proxyip=149.129.8.215%3A443",
+        "headers": {
+          "Host": "worker.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "qa.visamiddleeast.com § 72",
+      "server": "qa.visamiddleeast.com",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选10月 § 73",
+      "server": "172.67.203.112",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.visaeurope.at § 74",
+      "server": "www.visaeurope.at",
+      "server_port": 2096,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "IPv4 § 75",
+      "server": "104.17.0.0",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.visa.com.sg § 76",
+      "server": "www.visa.com.sg",
+      "server_port": 2087,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "加入我的频道t.me/CMLiussss解锁更多优选节点 § 77",
+      "server": "join.my.telegram.channel.cmliussss.to.unlock.more.premium.nodes.cf.090227.xyz",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "icook.hk § 78",
+      "server": "icook.hk",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.wto.org § 79",
+      "server": "www.wto.org",
+      "server_port": 8443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "visa.cn § 80",
+      "server": "visa.cn",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "cf-saas.asia § 81",
+      "server": "cf-saas.asia",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Cloudflare.241234.xyz § 82",
+      "server": "cloudflare.241234.xyz",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "africa.visa.com § 83",
+      "server": "africa.visa.com",
+      "server_port": 2083,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.visa.com § 84",
+      "server": "www.visa.com",
+      "server_port": 8443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "cis.visa.com § 85",
+      "server": "cis.visa.com",
+      "server_port": 2053,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.visa.com.mt § 86",
+      "server": "www.visa.com.mt",
+      "server_port": 8443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "time.is § 87",
+      "server": "time.is",
+      "server_port": 443,
+      "uuid": "d9d1b42d-47e3-4cbc-8e63-f168cce5ec7a",
+      "tls": {
+        "enabled": true,
+        "server_name": "myyx.fhjd0001.filegear-sg.me",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "myyx.fhjd0001.filegear-sg.me"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "66 § 88",
+      "server": "162.159.252.69",
+      "server_port": 2086,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "1 § 89",
+      "server": "www.csgo.com",
+      "server_port": 2052,
+      "uuid": "097fa342-6a2c-4d79-8c49-9229436529dc",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.xzqcsa.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "333 § 90",
+      "server": "104.19.1.100",
+      "server_port": 2052,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "csgo.com § 91",
+      "server": "www.csgo.com",
+      "server_port": 2052,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "444 § 92",
+      "server": "104.19.1.100",
+      "server_port": 2082,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "4 § 93",
+      "server": "104.16.209.120",
+      "server_port": 2083,
+      "uuid": "d383f80c-6d81-4d38-9a93-f6916678789d",
+      "tls": {
+        "enabled": true,
+        "server_name": "jd.xzqcsa.nyc.mn",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "jd.xzqcsa.nyc.mn"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "美国 § 94",
+      "server": "104.17.183.0",
+      "server_port": 2052,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "香港 § 95",
+      "server": "104.17.73.180",
+      "server_port": 2052,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "天书3-clone § 96",
+      "server": "172.64.160.31",
+      "server_port": 2053,
+      "uuid": "097fa342-6a2c-4d79-8c49-9229436529dc",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "天书8 § 97",
+      "server": "www.visa.com",
+      "server_port": 443,
+      "uuid": "097fa342-6a2c-4d79-8c49-9229436529dc",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "香港2 § 98",
+      "server": "104.18.17.9",
+      "server_port": 2086,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "天书6 § 99",
+      "server": "www.csgo.com",
+      "server_port": 2082,
+      "uuid": "097fa342-6a2c-4d79-8c49-9229436529dc",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "1-clone-clone-clone-clone § 100",
+      "server": "162.159.206.22",
+      "server_port": 80,
+      "uuid": "32c097ef-4303-4acc-9bc0-a368828f5e88",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "jkj.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "55 § 101",
+      "server": "162.159.252.69",
+      "server_port": 2095,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "1 § 102",
+      "server": "104.18.81.26",
+      "server_port": 2052,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "_2087 § 103",
+      "server": "104.18.54.241",
+      "server_port": 2087,
+      "uuid": "d383f80c-6d81-4d38-9a93-f6916678789d",
+      "tls": {
+        "enabled": true,
+        "server_name": "jd.xzqcsa.nyc.mn",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "jd.xzqcsa.nyc.mn"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "666 § 104",
+      "server": "104.19.1.100",
+      "server_port": 2086,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.csgo.com § 105",
+      "server": "www.csgo.com",
+      "server_port": 2095,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "6-clone-clone-clone § 106",
+      "server": "comicabc.com",
+      "server_port": 2095,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "天书8-clone § 107",
+      "server": "172.64.108.182",
+      "server_port": 443,
+      "uuid": "097fa342-6a2c-4d79-8c49-9229436529dc",
+      "tls": {
+        "enabled": true,
+        "server_name": "tianshu.19860524.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "tianshu.19860524.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "package_name": "app.hiddify.com",
+        "outbound": "bypass"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "domain_suffix": ".cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-cn.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-cn.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "n1-P7rWkiPV1VMxD"
+    }
+  }
+}
