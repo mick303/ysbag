@@ -497,7 +497,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -514,7 +514,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -531,7 +531,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -548,7 +548,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-proud-union-notls.ggmm.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -570,7 +570,7 @@
       "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
       "tls": {
         "enabled": true,
-        "server_name": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -578,9 +578,9 @@
       },
       "transport": {
         "type": "ws",
-        "path": "/worker-long-notls.zdsub1.workers.dev/?ed=2560",
+        "path": "/tianshu.19860524.us.kg/?ed=2560",
         "headers": {
-          "host": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -616,7 +616,7 @@
       "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
       "tls": {
         "enabled": true,
-        "server_name": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com",
+        "server_name": "tianshu.kevqwkt451.workers.dev",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -624,9 +624,9 @@
       },
       "transport": {
         "type": "ws",
-        "path": "/worker-long-notls.zdsub1.workers.dev/?ed=2560",
+        "path": "/tianshu.kevqwkt451.workers.dev/?ed=2560",
         "headers": {
-          "host": "2022585a-86a7-4231-b3a0-eeda14f77f4d.8f18237c-8e5f-4ffb-a434-1b2948c87be3.ddnsfree.com"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -638,7 +638,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -648,7 +648,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=45.67.215.119:443",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -660,7 +660,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -670,7 +670,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=194.76.18.116:443",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -687,7 +687,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -704,7 +704,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -716,7 +716,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -726,7 +726,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=212.183.88.242:443",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -743,7 +743,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-long-notls.zdsub1.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     },
@@ -768,7 +768,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -778,7 +778,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=148.135.22.235:20150",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -790,7 +790,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -800,7 +800,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=148.135.22.235:20150",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -812,7 +812,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -822,7 +822,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=14.39.254.65:50000",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -855,7 +855,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -865,7 +865,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=223.18.129.85:11263",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -877,7 +877,7 @@
       "uuid": "159bd70f-8bdd-4a45-b0ab-1a5a22735433",
       "tls": {
         "enabled": true,
-        "server_name": "page.ziyong0001.dynv6.net",
+        "server_name": "tianshu.19860524.us.kg",
         "utls": {
           "enabled": true,
           "fingerprint": "random"
@@ -887,7 +887,7 @@
         "type": "ws",
         "path": "/?ed=2560&proxyip=223.18.129.85:34913",
         "headers": {
-          "host": "page.ziyong0001.dynv6.net"
+          "host": "tianshu.19860524.us.kg"
         }
       }
     },
@@ -907,7 +907,7 @@
       },
       "transport": {
         "type": "ws",
-        "path": "/fhjd002.pages.dev/?ed=2560&proxyip=119.205.51.190:50000",
+        "path": "/tianshu.19860524.us.kg/?ed=2560&proxyip=119.205.51.190:50000",
         "headers": {
           "host": "547c921f-c9b1-4d57-bb25-ff5c79749783.a09c5a67-316e-45c6-a051-e6066737fd47.theworkpc.com"
         }
@@ -939,7 +939,7 @@
         "type": "ws",
         "path": "/?ed=2560",
         "headers": {
-          "host": "worker-muddy-notls.xxoo-dd9.workers.dev"
+          "host": "tianshu.kevqwkt451.workers.dev"
         }
       }
     }
