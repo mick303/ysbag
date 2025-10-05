@@ -35,30 +35,38 @@
     "rules": [
       {
         "domain": [
-          "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
-          "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
-          "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com",
-          "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
-          "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
-          "jp7.c259a22e-f036-2541-0753-80f236df600c.722ab11a.the-best-airport.com",
-          "us2.c259a22e-f036-2541-0753-80f236df600c.2f6cd430.the-best-airport.com",
-          "us4.c259a22e-f036-2541-0753-80f236df600c.30d6a0d0.the-best-airport.com",
-          "jp6.c259a22e-f036-2541-0753-80f236df600c.3958a655.the-best-airport.com",
+          "us2.c259a22e-f036-2541-0753-80f236df600c.c66a4cdd.the-best-airport.com",
+          "us3.c259a22e-f036-2541-0753-80f236df600c.71ee4638.the-best-airport.com",
           "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com",
-          "hk1.c259a22e-f036-2541-0753-80f236df600c.6df03129.the-best-airport.com",
-          "hk2.c259a22e-f036-2541-0753-80f236df600c.24ba0f77.the-best-airport.com",
-          "hk3.c259a22e-f036-2541-0753-80f236df600c.0d1f6a51.the-best-airport.com",
-          "hk4.c259a22e-f036-2541-0753-80f236df600c.66dc3db5.the-best-airport.com",
-          "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
-          "jp5.c259a22e-f036-2541-0753-80f236df600c.cfe6fe33.the-best-airport.com",
-          "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
-          "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
-          "jp8.c259a22e-f036-2541-0753-80f236df600c.7e2a9604.the-best-airport.com",
-          "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
-          "sg2.c259a22e-f036-2541-0753-80f236df600c.2c4b5066.the-best-airport.com",
-          "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+          "us2.c259a22e-f036-2541-0753-80f236df600c.2f6cd430.the-best-airport.com",
+          "hk5.c259a22e-f036-2541-0753-80f236df600c.7b6e516a.the-best-airport.com",
+          "us1.c259a22e-f036-2541-0753-80f236df600c.d897c0be.the-best-airport.com",
+          "nl1.c259a22e-f036-2541-0753-80f236df600c.6415408c.the-best-airport.com",
+          "nl2.c259a22e-f036-2541-0753-80f236df600c.7d4a254c.the-best-airport.com",
+          "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
           "us1.c259a22e-f036-2541-0753-80f236df600c.36a8c922.the-best-airport.com",
-          "us3.c259a22e-f036-2541-0753-80f236df600c.47253001.the-best-airport.com"
+          "hk2.c259a22e-f036-2541-0753-80f236df600c.71a30608.the-best-airport.com",
+          "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
+          "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
+          "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
+          "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
+          "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
+          "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
+          "hk1.c259a22e-f036-2541-0753-80f236df600c.000d4ee1.the-best-airport.com",
+          "hk6.c259a22e-f036-2541-0753-80f236df600c.c0900bc3.the-best-airport.com",
+          "nl3.c259a22e-f036-2541-0753-80f236df600c.ea508125.the-best-airport.com",
+          "nl4.c259a22e-f036-2541-0753-80f236df600c.f0e07049.the-best-airport.com",
+          "us3.c259a22e-f036-2541-0753-80f236df600c.47253001.the-best-airport.com",
+          "hk4.c259a22e-f036-2541-0753-80f236df600c.e69b99d9.the-best-airport.com",
+          "hk8.c259a22e-f036-2541-0753-80f236df600c.81829bd0.the-best-airport.com",
+          "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
+          "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+          "hk3.c259a22e-f036-2541-0753-80f236df600c.fc5d5972.the-best-airport.com",
+          "hk7.c259a22e-f036-2541-0753-80f236df600c.2e194f94.the-best-airport.com",
+          "us4.c259a22e-f036-2541-0753-80f236df600c.30d6a0d0.the-best-airport.com",
+          "us4.c259a22e-f036-2541-0753-80f236df600c.e1915b01.the-best-airport.com",
+          "sg2.c259a22e-f036-2541-0753-80f236df600c.2c4b5066.the-best-airport.com",
+          "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com"
         ],
         "server": "dns-direct"
       },
@@ -84,10 +92,10 @@
       "sky.rethinkdns.com": [
         "104.17.147.22",
         "104.17.148.22",
-        "104.21.83.62",
-        "172.67.214.246",
-        "2606:4700:3030::6815:533e",
-        "2606:4700:3030::ac43:d6f6"
+        "104.18.1.48",
+        "104.18.0.48",
+        "2606:4700::6812:130",
+        "2606:4700::6812:30"
       ]
     },
     "independent_cache": true
@@ -125,20 +133,29 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "（看这里）每月刷新订阅获取新节点",
-        "一元机场.ink",
-        "🇭🇰香港 01 | 专线",
-        "🇭🇰香港 02 | 专线",
-        "🇭🇰香港 03 | 专线",
-        "🇭🇰香港 04 | 专线",
+        "一元机场.asia",
+        "请立即到官网下载新客户端！",
+        "您正在使用的是最新客户端",
+        "🇭🇰香港 01 | 高级专线",
+        "🇭🇰香港 02 | 高级专线",
+        "🇭🇰香港 03 | 高级专线",
+        "🇭🇰香港 04 | 高级专线",
+        "🇭🇰香港 05 | 高级专线",
+        "🇭🇰香港 06 | 高级专线",
+        "🇭🇰香港 07 | 高级专线",
+        "🇭🇰香港 08 | 高级专线",
+        "🇺🇸美国 01 | 高级专线",
+        "🇺🇸美国 02 | 高级专线",
+        "🇺🇸美国 03 | 高级专线",
+        "🇺🇸美国 04 | 高级专线",
+        "🇳🇱荷兰 01 | 高级专线",
+        "🇳🇱荷兰 02 | 高级专线",
+        "🇳🇱荷兰 03 | 高级专线",
+        "🇳🇱荷兰 04 | 高级专线",
         "🇯🇵日本 01 | 专线",
         "🇯🇵日本 02 | 专线",
         "🇯🇵日本 03 | 专线",
         "🇯🇵日本 04 | 专线",
-        "🇯🇵日本 05 | 25倍计费！",
-        "🇯🇵日本 06 | 25倍计费！",
-        "🇯🇵日本 07 | 25倍计费！",
-        "🇯🇵日本 08 | 25倍计费！",
         "🇸🇬新加坡 01 | 专线",
         "🇸🇬新加坡 02 | 专线",
         "🇸🇬新加坡 03 | 专线",
@@ -159,4 +176,589 @@
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "（看这里）每月刷新订阅获取新
+        "一元机场.asia",
+        "请立即到官网下载新客户端！",
+        "您正在使用的是最新客户端",
+        "🇭🇰香港 01 | 高级专线",
+        "🇭🇰香港 02 | 高级专线",
+        "🇭🇰香港 03 | 高级专线",
+        "🇭🇰香港 04 | 高级专线",
+        "🇭🇰香港 05 | 高级专线",
+        "🇭🇰香港 06 | 高级专线",
+        "🇭🇰香港 07 | 高级专线",
+        "🇭🇰香港 08 | 高级专线",
+        "🇺🇸美国 01 | 高级专线",
+        "🇺🇸美国 02 | 高级专线",
+        "🇺🇸美国 03 | 高级专线",
+        "🇺🇸美国 04 | 高级专线",
+        "🇳🇱荷兰 01 | 高级专线",
+        "🇳🇱荷兰 02 | 高级专线",
+        "🇳🇱荷兰 03 | 高级专线",
+        "🇳🇱荷兰 04 | 高级专线",
+        "🇯🇵日本 01 | 专线",
+        "🇯🇵日本 02 | 专线",
+        "🇯🇵日本 03 | 专线",
+        "🇯🇵日本 04 | 专线",
+        "🇸🇬新加坡 01 | 专线",
+        "🇸🇬新加坡 02 | 专线",
+        "🇸🇬新加坡 03 | 专线",
+        "🇸🇬新加坡 04 | 专线",
+        "🇸🇬新加坡 05 | 专线",
+        "🇸🇬新加坡 06 | 专线",
+        "🇸🇬新加坡 07 | 专线",
+        "🇸🇬新加坡 08 | 专线",
+        "🇺🇸美国 01 | 专线",
+        "🇺🇸美国 02 | 专线",
+        "🇺🇸美国 03 | 专线",
+        "🇺🇸美国 04 | 专线"
+      ],
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "trojan",
+      "tag": "一元机场.asia",
+      "server": "0.0.0.0",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "0.0.0.0",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws"
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "请立即到官网下载新客户端！",
+      "server": "0.0.0.0",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "0.0.0.0",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "您正在使用的是最新客户端",
+      "server": "0.0.0.0",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 01 | 高级专线",
+      "server": "hk1.c259a22e-f036-2541-0753-80f236df600c.000d4ee1.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 02 | 高级专线",
+      "server": "hk2.c259a22e-f036-2541-0753-80f236df600c.71a30608.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 03 | 高级专线",
+      "server": "hk3.c259a22e-f036-2541-0753-80f236df600c.fc5d5972.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 04 | 高级专线",
+      "server": "hk4.c259a22e-f036-2541-0753-80f236df600c.e69b99d9.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 05 | 高级专线",
+      "server": "hk5.c259a22e-f036-2541-0753-80f236df600c.7b6e516a.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 06 | 高级专线",
+      "server": "hk6.c259a22e-f036-2541-0753-80f236df600c.c0900bc3.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 07 | 高级专线",
+      "server": "hk7.c259a22e-f036-2541-0753-80f236df600c.2e194f94.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰香港 08 | 高级专线",
+      "server": "hk8.c259a22e-f036-2541-0753-80f236df600c.81829bd0.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国 01 | 高级专线",
+      "server": "us1.c259a22e-f036-2541-0753-80f236df600c.d897c0be.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国 02 | 高级专线",
+      "server": "us2.c259a22e-f036-2541-0753-80f236df600c.c66a4cdd.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国 03 | 高级专线",
+      "server": "us3.c259a22e-f036-2541-0753-80f236df600c.71ee4638.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸美国 04 | 高级专线",
+      "server": "us4.c259a22e-f036-2541-0753-80f236df600c.e1915b01.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇳🇱荷兰 01 | 高级专线",
+      "server": "nl1.c259a22e-f036-2541-0753-80f236df600c.6415408c.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇳🇱荷兰 02 | 高级专线",
+      "server": "nl2.c259a22e-f036-2541-0753-80f236df600c.7d4a254c.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇳🇱荷兰 03 | 高级专线",
+      "server": "nl3.c259a22e-f036-2541-0753-80f236df600c.ea508125.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇳🇱荷兰 04 | 高级专线",
+      "server": "nl4.c259a22e-f036-2541-0753-80f236df600c.f0e07049.the-best-airport.com",
+      "server_port": 443,
+      "uuid": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 01 | 专线",
+      "server": "jp1.c259a22e-f036-2541-0753-80f236df600c.7adf211e.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 02 | 专线",
+      "server": "jp2.c259a22e-f036-2541-0753-80f236df600c.02444020.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 03 | 专线",
+      "server": "jp3.c259a22e-f036-2541-0753-80f236df600c.5584fc1f.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵日本 04 | 专线",
+      "server": "jp4.c259a22e-f036-2541-0753-80f236df600c.69408ae5.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 01 | 专线",
+      "server": "sg1.c259a22e-f036-2541-0753-80f236df600c.2dde7df3.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 02 | 专线",
+      "server": "sg2.c259a22e-f036-2541-0753-80f236df600c.2c4b5066.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 03 | 专线",
+      "server": "sg3.c259a22e-f036-2541-0753-80f236df600c.d4f84ebb.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 04 | 专线",
+      "server": "sg4.c259a22e-f036-2541-0753-80f236df600c.2ce203e5.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 05 | 专线",
+      "server": "sg5.c259a22e-f036-2541-0753-80f236df600c.dede0d54.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 06 | 专线",
+      "server": "sg6.c259a22e-f036-2541-0753-80f236df600c.0aca10d1.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 07 | 专线",
+      "server": "sg7.c259a22e-f036-2541-0753-80f236df600c.57aaa8ec.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬新加坡 08 | 专线",
+      "server": "sg8.c259a22e-f036-2541-0753-80f236df600c.c586e7c2.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸美国 01 | 专线",
+      "server": "us1.c259a22e-f036-2541-0753-80f236df600c.36a8c922.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸美国 02 | 专线",
+      "server": "us2.c259a22e-f036-2541-0753-80f236df600c.2f6cd430.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸美国 03 | 专线",
+      "server": "us3.c259a22e-f036-2541-0753-80f236df600c.47253001.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇺🇸美国 04 | 专线",
+      "server": "us4.c259a22e-f036-2541-0753-80f236df600c.30d6a0d0.the-best-airport.com",
+      "server_port": 443,
+      "password": "8431dd37-7db3-4f1a-ae67-cc59f99d97f7",
+      "tls": {
+        "enabled": true,
+        "server_name": "new.download.the-best-airport.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "package_name": "app.hiddify.com",
+        "outbound": "bypass"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "domain_suffix": ".cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-cn.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-cn.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "LXD0Str-foNFmx1q"
+    }
+  }
+}
