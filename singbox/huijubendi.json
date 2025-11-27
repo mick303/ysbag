@@ -1,1430 +1,1890 @@
 {
   "log": {
-    "level": "info",
+    "level": "warn",
+    "output": "box.log",
     "timestamp": true
-  },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "secret": "",
-      "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
-      "external_ui_download_detour": "direct",
-      "default_mode": "rule"
-    },
-    "cache_file": {
-      "enabled": true,
-      "store_fakeip": false
-    }
   },
   "dns": {
     "servers": [
       {
-        "tag": "proxyDns",
-        "address": "tls://8.8.8.8",
-        "detour": "Proxy"
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
       },
       {
-        "tag": "localDns",
-        "address": "https://223.5.5.5/dns-query",
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "223.5.5.5",
+        "address_resolver": "dns-local",
         "detour": "direct"
       },
       {
-        "tag": "block",
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
         "address": "rcode://success"
       }
     ],
     "rules": [
       {
-        "rule_set": "geosite-category-ads-all",
-        "server": "block"
-      },
-      {
-        "outbound": "any",
-        "server": "localDns",
-        "disable_cache": true
-      },
-      {
-        "rule_set": "geosite-cn",
-        "server": "localDns"
-      },
-      {
-        "clash_mode": "direct",
-        "server": "localDns"
-      },
-      {
-        "clash_mode": "global",
-        "server": "proxyDns"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "server": "proxyDns"
-      }
-    ],
-    "final": "localDns",
-    "strategy": "ipv4_only"
-  },
-  "inbounds": [
-    {
-      "type": "tun",
-      "inet4_address": "172.19.0.1/30",
-      "mtu": 9000,
-      "auto_route": true,
-      "strict_route": true,
-      "sniff": true,
-      "endpoint_independent_nat": false,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
-        }
-      }
-    },
-    {
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 2080,
-      "sniff": true,
-      "users": []
-    }
-  ],
-  "outbounds": [
-    {
-      "tag": "Proxy",
-      "type": "selector",
-      "outbounds": [
-        "auto",
-        "direct",
-        "优选104.25.241.106",
-        "优选104.19.41.211",
-        "优选104.18.7.151",
-        "优选104.16.51.29",
-        "优选104.18.22.95",
-        "notls-japan.com",
-        "优选104.18.131.112",
-        "优选104.18.108.98",
-        "优选104.16.254.18",
-        "notls-www.shopify.com",
-        "notls-cf.090227.xyz",
-        "优选104.18.197.48",
-        "优选104.18.206.225",
-        "优选104.17.251.255",
-        "优选104.17.233.216",
-        "优选104.21.36.156",
-        "优选198.41.219.24",
-        "优选104.18.135.154",
-        "优选104.17.162.84",
-        "time.is",
-        "优选104.16.103.109",
-        "🇱🇺 LU_分享日记",
-        "GB_分享日记",
-        "🇷🇺 RU_分享日记",
-        "unKnow_分享日记",
-        "🇱🇹 LT_分享日记",
-        "sg",
-        "🇱🇹 LT_分享日记 2",
-        "🇺🇸 US_分享日记",
-        "🇳🇱 NL_分享日记",
-        "001.wangdang2130.workers.dev",
-        "🇧🇬 BG_分享日记",
-        "🇺🇸 LT_分享日记 ss://YWVzLTI1Ni1nY206a0RXdlhZWm9UQmNHa0M0@38.91.100.55:8882#US_分享日记",
-        "unKnow_分享日记 2"
-      ]
-    },
-    {
-      "tag": "OpenAI",
-      "type": "selector",
-      "outbounds": [
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ],
-      "default": "America"
-    },
-    {
-      "tag": "Google",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Twitter",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Facebook",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "BiliBili",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "HongKong",
-        "TaiWan"
-      ]
-    },
-    {
-      "tag": "Bahamut",
-      "type": "selector",
-      "outbounds": [
-        "TaiWan",
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "Spotify",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ],
-      "default": "America"
-    },
-    {
-      "tag": "TikTok",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America"
-      ],
-      "default": "Japan"
-    },
-    {
-      "tag": "Netflix",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Disney+",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Apple",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Microsoft",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Games",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Streaming",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others"
-      ]
-    },
-    {
-      "tag": "Global",
-      "type": "selector",
-      "outbounds": [
-        "HongKong",
-        "TaiWan",
-        "Singapore",
-        "Japan",
-        "America",
-        "Others",
-        "direct"
-      ]
-    },
-    {
-      "tag": "China",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "AdBlock",
-      "type": "selector",
-      "outbounds": [
-        "block",
-        "direct"
-      ]
-    },
-    {
-      "tag": "HongKong",
-      "type": "selector",
-      "outbounds": [
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "TaiWan",
-      "type": "selector",
-      "outbounds": [
-        "Proxy"
-      ]
-    },
-    {
-      "tag": "Singapore",
-      "type": "selector",
-      "outbounds": [
-        "sg"
-      ]
-    },
-    {
-      "tag": "Japan",
-      "type": "selector",
-      "outbounds": [
-        "🇱🇺 LU_分享日记",
-        "GB_分享日记",
-        "🇷🇺 RU_分享日记",
-        "unKnow_分享日记",
-        "🇱🇹 LT_分享日记",
-        "🇱🇹 LT_分享日记 2",
-        "🇺🇸 US_分享日记",
-        "🇳🇱 NL_分享日记",
-        "🇧🇬 BG_分享日记",
-        "🇺🇸 LT_分享日记 ss://YWVzLTI1Ni1nY206a0RXdlhZWm9UQmNHa0M0@38.91.100.55:8882#US_分享日记",
-        "unKnow_分享日记 2"
-      ]
-    },
-    {
-      "tag": "America",
-      "type": "selector",
-      "outbounds": [
-        "🇺🇸 US_分享日记",
-        "🇺🇸 LT_分享日记 ss://YWVzLTI1Ni1nY206a0RXdlhZWm9UQmNHa0M0@38.91.100.55:8882#US_分享日记"
-      ]
-    },
-    {
-      "tag": "Others",
-      "type": "selector",
-      "outbounds": [
-        "优选104.25.241.106",
-        "优选104.19.41.211",
-        "优选104.18.7.151",
-        "优选104.16.51.29",
-        "优选104.18.22.95",
-        "notls-japan.com",
-        "优选104.18.131.112",
-        "优选104.18.108.98",
-        "优选104.16.254.18",
-        "notls-www.shopify.com",
-        "notls-cf.090227.xyz",
-        "优选104.18.197.48",
-        "优选104.18.206.225",
-        "优选104.17.251.255",
-        "优选104.17.233.216",
-        "优选104.21.36.156",
-        "优选198.41.219.24",
-        "优选104.18.135.154",
-        "优选104.17.162.84",
-        "time.is",
-        "优选104.16.103.109",
-        "001.wangdang2130.workers.dev"
-      ]
-    },
-    {
-      "tag": "auto",
-      "type": "urltest",
-      "outbounds": [
-        "优选104.25.241.106",
-        "优选104.19.41.211",
-        "优选104.18.7.151",
-        "优选104.16.51.29",
-        "优选104.18.22.95",
-        "notls-japan.com",
-        "优选104.18.131.112",
-        "优选104.18.108.98",
-        "优选104.16.254.18",
-        "notls-www.shopify.com",
-        "notls-cf.090227.xyz",
-        "优选104.18.197.48",
-        "优选104.18.206.225",
-        "优选104.17.251.255",
-        "优选104.17.233.216",
-        "优选104.21.36.156",
-        "优选198.41.219.24",
-        "优选104.18.135.154",
-        "优选104.17.162.84",
-        "time.is",
-        "优选104.16.103.109",
-        "🇱🇺 LU_分享日记",
-        "GB_分享日记",
-        "🇷🇺 RU_分享日记",
-        "unKnow_分享日记",
-        "🇱🇹 LT_分享日记",
-        "sg",
-        "🇱🇹 LT_分享日记 2",
-        "🇺🇸 US_分享日记",
-        "🇳🇱 NL_分享日记",
-        "001.wangdang2130.workers.dev",
-        "🇧🇬 BG_分享日记",
-        "🇺🇸 LT_分享日记 ss://YWVzLTI1Ni1nY206a0RXdlhZWm9UQmNHa0M0@38.91.100.55:8882#US_分享日记",
-        "unKnow_分享日记 2"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
-      "type": "direct",
-      "tag": "direct"
-    },
-    {
-      "type": "dns",
-      "tag": "dns-out"
-    },
-    {
-      "type": "block",
-      "tag": "block"
-    },
-    {
-      "tag": "优选104.25.241.106",
-      "type": "vless",
-      "server": "104.25.241.106",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.19.41.211",
-      "type": "vless",
-      "server": "104.19.41.211",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.7.151",
-      "type": "vless",
-      "server": "104.18.7.151",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.16.51.29",
-      "type": "vless",
-      "server": "104.16.51.29",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.22.95",
-      "type": "vless",
-      "server": "104.18.22.95",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "notls-japan.com",
-      "type": "vless",
-      "server": "japan.com",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-notls.xxoo-dd8.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.131.112",
-      "type": "vless",
-      "server": "104.18.131.112",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.108.98",
-      "type": "vless",
-      "server": "104.18.108.98",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.16.254.18",
-      "type": "vless",
-      "server": "104.16.254.18",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "notls-www.shopify.com",
-      "type": "vless",
-      "server": "www.shopify.com",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-proud-union-notls.ggmm.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "notls-cf.090227.xyz",
-      "type": "vless",
-      "server": "cf.090227.xyz",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-proud-firefly-notls.coolgou.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.197.48",
-      "type": "vless",
-      "server": "104.18.197.48",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.206.225",
-      "type": "vless",
-      "server": "104.18.206.225",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.17.251.255",
-      "type": "vless",
-      "server": "104.17.251.255",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.17.233.216",
-      "type": "vless",
-      "server": "104.17.233.216",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.21.36.156",
-      "type": "vless",
-      "server": "104.21.36.156",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选198.41.219.24",
-      "type": "vless",
-      "server": "198.41.219.24",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.18.135.154",
-      "type": "vless",
-      "server": "104.18.135.154",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-muddy-notls.xxoo-dd9.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.17.162.84",
-      "type": "vless",
-      "server": "104.17.162.84",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-long-notls.zdsub1.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "time.is",
-      "type": "vless",
-      "server": "time.is",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-proud-union-notls.ggmm.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "优选104.16.103.109",
-      "type": "vless",
-      "server": "104.16.103.109",
-      "server_port": 80,
-      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "worker-proud-union-notls.ggmm.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "🇱🇺 LU_分享日记",
-      "type": "vless",
-      "server": "188.42.88.6",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "GB_分享日记",
-      "type": "vless",
-      "server": "188.244.122.85",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "🇷🇺 RU_分享日记",
-      "type": "vless",
-      "server": "185.109.21.19",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tg@zdyz2security",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "unKnow_分享日记",
-      "type": "vless",
-      "server": "103.169.142.78",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tg@zdyz2fp",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "🇱🇹 LT_分享日记",
-      "type": "vless",
-      "server": "185.148.107.81",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "sg",
-      "type": "vmess",
-      "server": "sg-detour-03.grabgo.pro",
-      "server_port": 15303,
-      "uuid": "0b9232cd-d901-4f16-9b51-05bfa3b59bd7",
-      "security": "chacha20-poly1305",
-      "alter_id": 0,
-      "packet_encoding": "xudp"
-    },
-    {
-      "tag": "🇱🇹 LT_分享日记 2",
-      "type": "vless",
-      "server": "185.148.107.47",
-      "server_port": 443,
-      "uuid": "f775978b-6e22-41a8-ae5e-5f9779e6745f",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "juzibaipiao.5112233.xyz"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "juzibaipiao.5112233.xyz"
-        }
-      }
-    },
-    {
-      "tag": "🇺🇸 US_分享日记",
-      "type": "vless",
-      "server": "167.68.11.95",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "🇳🇱 NL_分享日记",
-      "type": "vless",
-      "server": "45.159.217.21",
-      "server_port": 443,
-      "uuid": "f775978b-6e22-41a8-ae5e-5f9779e6745f",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "juzibaipiao.5112233.xyz"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "juzibaipiao.5112233.xyz"
-        }
-      }
-    },
-    {
-      "tag": "001.wangdang2130.workers.dev",
-      "type": "vless",
-      "server": "162.159.137.187",
-      "server_port": 8080,
-      "uuid": "4add2a0a-68ce-4214-b04c-347470d3f1fc",
-      "packet_encoding": "xudp",
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "001.wangdang2130.workers.dev"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2048
-      }
-    },
-    {
-      "tag": "🇧🇬 BG_分享日记",
-      "type": "vless",
-      "server": "185.176.26.216",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "🇺🇸 LT_分享日记 ss://YWVzLTI1Ni1nY206a0RXdlhZWm9UQmNHa0M0@38.91.100.55:8882#US_分享日记",
-      "type": "vless",
-      "server": "185.148.104.253",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    },
-    {
-      "tag": "unKnow_分享日记 2",
-      "type": "vless",
-      "server": "103.169.142.104",
-      "server_port": 443,
-      "uuid": "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5",
-      "packet_encoding": "xudp",
-      "tls": {
-        "enabled": true,
-        "insecure": false,
-        "server_name": "cfed.tgzdyz2.top"
-      },
-      "transport": {
-        "type": "ws",
-        "path": "tg@zdyz2",
-        "headers": {
-          "Host": "cfed.tgzdyz2.top"
-        }
-      }
-    }
-  ],
-  "route": {
-    "auto_detect_interface": true,
-    "final": "Proxy",
-    "rules": [
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 53
-          },
-          {
-            "protocol": "dns"
-          }
-        ],
-        "outbound": "dns-out"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "AdBlock"
-      },
-      {
-        "clash_mode": "direct",
-        "outbound": "direct"
-      },
-      {
-        "clash_mode": "global",
-        "outbound": "Proxy"
-      },
-      {
         "domain": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one"
+          "sub.danfeng.eu.org",
+          "cf.zhetengsha.eu.org",
+          "join.my.telegram.channel.cmliussss.to.unlock.more.premium.nodes.cf.090227.xyz",
+          "www.csgo.com",
+          "saas.sin.fan",
+          "cf.130519.xyz",
+          "cf.090227.xyz",
+          "cf.877774.xyz",
+          "cdns.doon.eu.org",
+          "www.shopify.com",
+          "mfa.gov.ua",
+          "store.ubi.com",
+          "cf.008500.xyz"
         ],
-        "outbound": "direct"
+        "server": "dns-direct"
       },
       {
-        "ip_is_private": true,
-        "outbound": "direct"
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
       },
       {
-        "rule_set": "geosite-openai",
-        "outbound": "OpenAI"
-      },
-      {
-        "rule_set": [
-          "geosite-youtube",
-          "geoip-google",
-          "geosite-google",
-          "geosite-github"
-        ],
-        "outbound": "Google"
-      },
-      {
-        "rule_set": [
-          "geoip-telegram",
-          "geosite-telegram"
-        ],
-        "outbound": "Telegram"
-      },
-      {
-        "rule_set": [
-          "geoip-twitter",
-          "geosite-twitter"
-        ],
-        "outbound": "Twitter"
-      },
-      {
-        "rule_set": [
-          "geoip-facebook",
-          "geosite-facebook"
-        ],
-        "outbound": "Facebook"
-      },
-      {
-        "rule_set": "geosite-bilibili",
-        "outbound": "BiliBili"
-      },
-      {
-        "rule_set": "geosite-bahamut",
-        "outbound": "Bahamut"
-      },
-      {
-        "rule_set": "geosite-spotify",
-        "outbound": "Spotify"
-      },
-      {
-        "rule_set": "geosite-tiktok",
-        "outbound": "TikTok"
-      },
-      {
-        "rule_set": [
-          "geoip-netflix",
-          "geosite-netflix"
-        ],
-        "outbound": "Netflix"
-      },
-      {
-        "rule_set": "geosite-disney",
-        "outbound": "Disney+"
-      },
-      {
-        "rule_set": [
-          "geoip-apple",
-          "geosite-apple",
-          "geosite-amazon"
-        ],
-        "outbound": "Apple"
-      },
-      {
-        "rule_set": "geosite-microsoft",
-        "outbound": "Microsoft"
-      },
-      {
-        "rule_set": [
-          "geosite-category-games",
-          "geosite-dmm"
-        ],
-        "outbound": "Games"
-      },
-      {
-        "rule_set": [
-          "geosite-hbo",
-          "geosite-primevideo"
-        ],
-        "outbound": "Streaming"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Global"
+        "domain_suffix": ".cn",
+        "server": "dns-direct"
       },
       {
         "rule_set": [
           "geoip-cn",
           "geosite-cn"
         ],
-        "outbound": "China"
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "🇨🇳 tw1172.65.90.50",
+        "1-clone-clone-clone-clone",
+        "优选104.18.135.154",
+        "自选141.101.114.219",
+        "自选172.67.249.74",
+        "优选198.41.219.24",
+        "444",
+        "001.wangdang2130.workers.dev",
+        "www.csgo.com",
+        "🇨🇳",
+        "🇸🇬 SG-vless",
+        "🇭🇰 HK-vless",
+        "🇯🇵 JP-vless",
+        "🇰🇷 KR-vless",
+        "🇭🇰 HK-vless 2",
+        "🇸🇬 SG-vless 2",
+        "🇭🇰 HK-vless 3",
+        "🇯🇵 JP-vless 2",
+        "🇨🇳 TW-vless",
+        "🇭🇰 HK-vless 4",
+        "🇸🇬 SG-trojan",
+        "🇭🇰 HK-trojan",
+        "🇯🇵 JP-trojan",
+        "🇰🇷 KR-trojan",
+        "🇭🇰 HK-trojan 2",
+        "🇸🇬 SG-trojan 2",
+        "🇭🇰 HK-trojan 3",
+        "🇯🇵 JP-trojan 2",
+        "🇨🇳 TW-trojan",
+        "🇭🇰 HK-trojan 4",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点",
+        "CFnat",
+        "🇭🇰 HK",
+        "🇭🇰 HK 2",
+        "🇩🇪 DE",
+        "🇩🇪 DE 2",
+        "🇫🇷 FR",
+        "🇺🇸 US",
+        "🇩🇪 DE 3",
+        "🇺🇸 US 2",
+        "🇫🇷 FR 2",
+        "🇸🇬 SG",
+        "🇩🇪 DE 4",
+        "SE",
+        "SE 2",
+        "🇩🇪 DE 5",
+        "🇨🇦 CA",
+        "🇩🇪 DE 6",
+        "FI",
+        "🇩🇪 DE 7",
+        "🇰🇷 KR",
+        "🇷🇺 RU",
+        "🇰🇷 KR 2",
+        "🇺🇸 US 3",
+        "🇰🇷 KR 3",
+        "🇰🇷 KR 4",
+        "🇰🇷 KR 5",
+        "🇸🇬 SG 2",
+        "CF优选-电信",
+        "CF优选-电信 2",
+        "CF优选-电信 3",
+        "CF优选-电信 4",
+        "CF优选-联通",
+        "CF优选-联通 2",
+        "CF优选-联通 3",
+        "CF优选-联通 4",
+        "CF优选-移动",
+        "CF优选-移动 2",
+        "CF优选-移动 3",
+        "CF优选-移动 4"
+      ],
+      "default": "auto",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "🇨🇳 tw1172.65.90.50",
+        "1-clone-clone-clone-clone",
+        "优选104.18.135.154",
+        "自选141.101.114.219",
+        "自选172.67.249.74",
+        "优选198.41.219.24",
+        "444",
+        "001.wangdang2130.workers.dev",
+        "www.csgo.com",
+        "🇨🇳",
+        "🇸🇬 SG-vless",
+        "🇭🇰 HK-vless",
+        "🇯🇵 JP-vless",
+        "🇰🇷 KR-vless",
+        "🇭🇰 HK-vless 2",
+        "🇸🇬 SG-vless 2",
+        "🇭🇰 HK-vless 3",
+        "🇯🇵 JP-vless 2",
+        "🇨🇳 TW-vless",
+        "🇭🇰 HK-vless 4",
+        "🇸🇬 SG-trojan",
+        "🇭🇰 HK-trojan",
+        "🇯🇵 JP-trojan",
+        "🇰🇷 KR-trojan",
+        "🇭🇰 HK-trojan 2",
+        "🇸🇬 SG-trojan 2",
+        "🇭🇰 HK-trojan 3",
+        "🇯🇵 JP-trojan 2",
+        "🇨🇳 TW-trojan",
+        "🇭🇰 HK-trojan 4",
+        "加入我的频道t.me/CMLiussss解锁更多优选节点",
+        "CFnat",
+        "🇭🇰 HK",
+        "🇭🇰 HK 2",
+        "🇩🇪 DE",
+        "🇩🇪 DE 2",
+        "🇫🇷 FR",
+        "🇺🇸 US",
+        "🇩🇪 DE 3",
+        "🇺🇸 US 2",
+        "🇫🇷 FR 2",
+        "🇸🇬 SG",
+        "🇩🇪 DE 4",
+        "SE",
+        "SE 2",
+        "🇩🇪 DE 5",
+        "🇨🇦 CA",
+        "🇩🇪 DE 6",
+        "FI",
+        "🇩🇪 DE 7",
+        "🇰🇷 KR",
+        "🇷🇺 RU",
+        "🇰🇷 KR 2",
+        "🇺🇸 US 3",
+        "🇰🇷 KR 3",
+        "🇰🇷 KR 4",
+        "🇰🇷 KR 5",
+        "🇸🇬 SG 2",
+        "CF优选-电信",
+        "CF优选-电信 2",
+        "CF优选-电信 3",
+        "CF优选-电信 4",
+        "CF优选-联通",
+        "CF优选-联通 2",
+        "CF优选-联通 3",
+        "CF优选-联通 4",
+        "CF优选-移动",
+        "CF优选-移动 2",
+        "CF优选-移动 3",
+        "CF优选-移动 4"
+      ],
+      "url": "http://cp.cloudflare.com",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s",
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳 tw1172.65.90.50",
+      "server": "172.65.90.50",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "1-clone-clone-clone-clone",
+      "server": "162.159.206.22",
+      "server_port": 80,
+      "uuid": "32c097ef-4303-4acc-9bc0-a368828f5e88",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "jkj.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选104.18.135.154",
+      "server": "104.18.135.154",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选141.101.114.219",
+      "server": "141.101.114.219",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "自选172.67.249.74",
+      "server": "172.67.249.74",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "优选198.41.219.24",
+      "server": "198.41.219.24",
+      "server_port": 80,
+      "uuid": "3087ca05-1a7c-45fa-aec9-805adeaedb1b",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "444",
+      "server": "104.19.1.100",
+      "server_port": 2082,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "001.wangdang2130.workers.dev",
+      "server": "162.159.137.187",
+      "server_port": 8080,
+      "uuid": "4add2a0a-68ce-4214-b04c-347470d3f1fc",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "001.wangdang2130.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "www.csgo.com",
+      "server": "www.csgo.com",
+      "server_port": 2095,
+      "uuid": "e11664a1-39e9-4dd8-a432-b712ec423262",
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "tianshu.kevqwkt451.workers.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳",
+      "server": "www.shopify.com",
+      "server_port": 8443,
+      "uuid": "ba55ef37-c33c-4a8f-aafa-2abc85312863",
+      "tls": {
+        "enabled": true,
+        "server_name": "apk.arises.dynv6.net",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2048",
+        "headers": {
+          "Host": "apk.arises.dynv6.net"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬 SG-vless",
+      "server": "mfa.gov.ua",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK-vless",
+      "server": "saas.sin.fan",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇯🇵 JP-vless",
+      "server": "store.ubi.com",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR-vless",
+      "server": "cf.130519.xyz",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK-vless 2",
+      "server": "cf.008500.xyz",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬 SG-vless 2",
+      "server": "cf.090227.xyz",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK-vless 3",
+      "server": "cf.877774.xyz",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇯🇵 JP-vless 2",
+      "server": "cdns.doon.eu.org",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇳 TW-vless",
+      "server": "sub.danfeng.eu.org",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK-vless 4",
+      "server": "cf.zhetengsha.eu.org",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬 SG-trojan",
+      "server": "mfa.gov.ua",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇭🇰 HK-trojan",
+      "server": "saas.sin.fan",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵 JP-trojan",
+      "server": "store.ubi.com",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇰🇷 KR-trojan",
+      "server": "cf.130519.xyz",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇭🇰 HK-trojan 2",
+      "server": "cf.008500.xyz",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇸🇬 SG-trojan 2",
+      "server": "cf.090227.xyz",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇭🇰 HK-trojan 3",
+      "server": "cf.877774.xyz",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇯🇵 JP-trojan 2",
+      "server": "cdns.doon.eu.org",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇨🇳 TW-trojan",
+      "server": "sub.danfeng.eu.org",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "🇭🇰 HK-trojan 4",
+      "server": "cf.zhetengsha.eu.org",
+      "server_port": 443,
+      "password": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "加入我的频道t.me/CMLiussss解锁更多优选节点",
+      "server": "Join.my.Telegram.channel.CMLiussss.to.unlock.more.premium.nodes.cf.090227.xyz",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CFnat",
+      "server": "127.0.0.1",
+      "server_port": 1234,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK",
+      "server": "118.193.73.135",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 HK 2",
+      "server": "202.85.53.74",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE",
+      "server": "185.106.94.29",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 2",
+      "server": "77.91.70.19",
+      "server_port": 2053,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇫🇷 FR",
+      "server": "37.59.96.47",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸 US",
+      "server": "24.144.69.203",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 3",
+      "server": "91.107.243.239",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸 US 2",
+      "server": "45.32.225.136",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇫🇷 FR 2",
+      "server": "51.91.251.160",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬 SG",
+      "server": "79.110.55.222",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 4",
+      "server": "185.106.94.243",
+      "server_port": 2053,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "SE",
+      "server": "46.8.237.91",
+      "server_port": 2053,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "SE 2",
+      "server": "31.57.62.224",
+      "server_port": 2053,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 5",
+      "server": "193.188.21.83",
+      "server_port": 2053,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇨🇦 CA",
+      "server": "192.3.30.175",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 6",
+      "server": "51.195.119.195",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "FI",
+      "server": "65.109.212.211",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇩🇪 DE 7",
+      "server": "31.56.237.231",
+      "server_port": 8443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR",
+      "server": "121.176.5.244",
+      "server_port": 50002,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇷🇺 RU",
+      "server": "46.17.43.237",
+      "server_port": 54596,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR 2",
+      "server": "61.81.154.41",
+      "server_port": 50001,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸 US 3",
+      "server": "118.45.236.190",
+      "server_port": 30005,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR 3",
+      "server": "58.145.53.104",
+      "server_port": 50001,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR 4",
+      "server": "114.129.224.225",
+      "server_port": 50000,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇰🇷 KR 5",
+      "server": "122.39.185.184",
+      "server_port": 10003,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "🇸🇬 SG 2",
+      "server": "64.176.81.163",
+      "server_port": 1443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-电信",
+      "server": "162.159.42.32",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-电信 2",
+      "server": "8.39.125.39",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-电信 3",
+      "server": "8.35.210.111",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-电信 4",
+      "server": "162.159.39.233",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-联通",
+      "server": "104.26.5.193",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-联通 2",
+      "server": "104.26.8.254",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-联通 3",
+      "server": "172.67.78.88",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-联通 4",
+      "server": "104.26.4.16",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-移动",
+      "server": "104.19.41.17",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-移动 2",
+      "server": "104.19.57.239",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-移动 3",
+      "server": "104.19.35.51",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "CF优选-移动 4",
+      "server": "104.19.33.161",
+      "server_port": 443,
+      "uuid": "1745d1c4-224e-4d48-8c41-e580f2e1b9ff",
+      "tls": {
+        "enabled": true,
+        "server_name": "mick.fhjd000.dpdns.org",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed=2560",
+        "headers": {
+          "Host": "mick.fhjd000.dpdns.org"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "package_name": "app.hiddify.com",
+        "outbound": "bypass"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "domain_suffix": ".cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-cn",
+          "geosite-cn"
+        ],
+        "outbound": "direct"
       }
     ],
     "rule_set": [
       {
-        "tag": "geosite-category-ads-all",
         "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-openai",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Toperlock/sing-box-geosite/main/rule/OpenAI.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-youtube",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-facebook",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/facebook.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-facebook",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/facebook.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bilibili",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bilibili.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bahamut",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bahamut.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-spotify",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-tiktok",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-netflix",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-netflix",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-disney",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/disney.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-amazon",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/amazon.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-microsoft",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-games",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-dmm",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/dmm.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-hbo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/hbo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-primevideo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/primevideo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
         "tag": "geoip-cn",
-        "type": "remote",
         "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-cn.srs",
+        "update_interval": "120h0m0s"
       },
       {
-        "tag": "geosite-cn",
         "type": "remote",
+        "tag": "geosite-cn",
         "format": "binary",
-        "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-        "download_detour": "direct"
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-cn.srs",
+        "update_interval": "120h0m0s"
       }
-    ]
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "w0SBLbRQuV5L0h5v"
+    }
   }
 }
